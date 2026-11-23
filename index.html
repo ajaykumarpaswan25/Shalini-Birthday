@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Shalini | Starlight & Golden Rose Gold Celebration</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        rosegold: {
+                            DEFAULT: '#f4a2b8',
+                            light: '#fcdbe5',
+                            dark: '#d4738f',
+                            glow: '#ffb6ca'
+                        },
+                        champagne: {
+                            DEFAULT: '#f9e29c',
+                            light: '#fff5d6',
+                            dark: '#d6b359',
+                            glow: '#ffebaa'
+                        },
+                        velvet: {
+                            900: '#0b0716',
+                            800: '#140c26',
+                            700: '#1d1238',
+                            600: '#281a4a'
+                        }
+                    },
+                    fontFamily: {
+                        vibes: ['"Great Vibes"', 'cursive'],
+                        playfair: ['"Playfair Display"', 'serif'],
+                        cormorant: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Styles & Glassmorphism */
+        body {
+            background: linear-gradient(135deg, #0b0716 0%, #140c26 50%, #1d1238 100%);
+            color: #fcdbe5;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .gold-text-glow {
+            text-shadow: 0 0 12px rgba(249, 226, 156, 0.6), 0 0 25px rgba(244, 162, 184, 0.4);
+        }
+
+        .rosegold-text-glow {
+            text-shadow: 0 0 10px rgba(244, 162, 184, 0.7), 0 0 20px rgba(212, 115, 143, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(24, 14, 46, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(244, 162, 184, 0.25);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(249, 226, 156, 0.05);
+        }
+
+        .glass-card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-6px) scale(1.02);
+            border-color: rgba(249, 226, 156, 0.6);
+            box-shadow: 0 20px 50px rgba(244, 162, 184, 0.25), inset 0 0 25px rgba(249, 226, 156, 0.1);
+        }
+
+        /* 3D Flip Card */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Candle Flame Animation */
+        .flame {
+            width: 14px;
+            height: 24px;
+            background: radial-gradient(ellipse at bottom, #fff 0%, #f9e29c 25%, #ff7700 60%, transparent 100%);
+            border-radius: 50% 50% 35% 35%;
+            animation: flicker 1.2s infinite alternate ease-in-out;
+            box-shadow: 0 0 15px #ff9900, 0 0 25px #ff5500;
+            transform-origin: center bottom;
+        }
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); opacity: 0.95; }
+            50% { transform: scale(1.1, 0.9) rotate(2deg); opacity: 1; }
+            100% { transform: scale(0.95, 1.05) rotate(-1deg); opacity: 0.9; }
+        }
+
+        .smoke {
+            width: 8px;
+            height: 20px;
+            background: rgba(200, 200, 200, 0.5);
+            border-radius: 50%;
+            filter: blur(4px);
+            animation: riseSmoke 1.5s ease-out forwards;
+        }
+        @keyframes riseSmoke {
+            0% { opacity: 0.8; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-30px) scale(2.5); }
+        }
+
+        /* Equalizer Animation */
+        .eq-bar {
+            width: 3px;
+            background-color: #f9e29c;
+            border-radius: 2px;
+            animation: eqBounce 1s infinite ease-in-out alternate;
+        }
+        .eq-bar:nth-child(1) { height: 12px; animation-delay: 0.1s; }
+        .eq-bar:nth-child(2) { height: 18px; animation-delay: 0.3s; }
+        .eq-bar:nth-child(3) { height: 10px; animation-delay: 0.2s; }
+        .eq-bar:nth-child(4) { height: 16px; animation-delay: 0.4s; }
+        .paused .eq-bar { animation-play-state: paused; height: 6px !important; }
+
+        @keyframes eqBounce {
+            0% { transform: scaleY(0.3); }
+            100% { transform: scaleY(1.1); }
+        }
+
+        /* Pulsing Gift Box */
+        .gift-box-pulse {
+            animation: giftPulse 2s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        }
+        @keyframes giftPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(244, 162, 184, 0.4); }
+            50% { transform: scale(1.06); box-shadow: 0 0 40px rgba(249, 226, 156, 0.7); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0716;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4738f;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f9e29c;
+        }
+    </style>
+</head>
+<body class="relative font-sans text-rosegold-light selection:bg-rosegold-dark selection:text-white">
+
+    <!-- Background Canvas for Stars, Shooting Stars & Golden Lanterns -->
+    <canvas id="starCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+    
+    <!-- Top Layer Fireworks Canvas -->
+    <canvas id="fireworksCanvas" class="fixed inset-0 pointer-events-none z-40"></canvas>
+
+    <!-- FLOATING MUSIC BUTTON (Top-Right, Zero Overlap) -->
+    <div class="fixed top-3.5 right-3.5 sm:top-6 sm:right-6 z-50">
+        <button id="musicToggleBtn" onclick="toggleAudio()" class="flex items-center gap-2.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full glass-card border border-rosegold/40 hover:border-champagne transition-all duration-300 shadow-xl group cursor-pointer active:scale-95">
+            <div id="eqIcon" class="flex items-end gap-0.5 h-5 paused">
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+            </div>
+            <span id="musicBtnText" class="text-xs sm:text-sm font-semibold font-cormorant tracking-wider text-champagne group-hover:text-white">Play Music</span>
+            <svg id="musicSpeakerIcon" class="w-4 h-4 text-rosegold group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Hidden Audio Tag for Local song.mp3 fallback -->
+    <audio id="bgAudio" loop preload="auto">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- MAIN WRAPPER WITH TOP PADDING TO PREVENT OVERLAP -->
+    <main class="relative z-10 min-h-screen flex flex-col justify-between pt-20 sm:pt-24 md:pt-28 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16 sm:space-y-24">
+
+        <!-- HERO SECTION -->
+        <section class="text-center space-y-4 sm:space-y-6">
+            <div class="inline-block px-4 py-1.5 rounded-full glass-card border border-rosegold/30 text-xs sm:text-sm text-champagne tracking-widest uppercase font-cormorant font-semibold">
+                ✨ Starlight Birthday Celebration ✨
+            </div>
+            
+            <h1 class="font-vibes text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-champagne-light via-rosegold to-champagne gold-text-glow leading-tight py-2">
+                Happy Birthday Shalini
+            </h1>
+
+            <p class="font-cormorant italic text-lg sm:text-2xl md:text-3xl text-rosegold-light max-w-3xl mx-auto font-medium">
+                "May your life shine as bright as the stars, filled with endless love, laughter, and magical moments."
+            </p>
+
+            <div class="flex items-center justify-center gap-3 text-xs sm:text-sm font-semibold tracking-wider text-champagne/80">
+                <span class="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent to-rosegold"></span>
+                <span>FROM AJAY • 30 NOVEMBER 2026</span>
+                <span class="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-rosegold"></span>
+            </div>
+        </section>
+
+        <!-- 3D HIGH-CONTRAST COUNTDOWN CLOCK -->
+        <section class="max-w-4xl mx-auto w-full">
+            <div class="text-center mb-6">
+                <h2 class="font-playfair text-2xl sm:text-3xl font-bold text-champagne tracking-wide">
+                    The Magic Countdown
+                </h2>
+                <p class="font-cormorant text-sm sm:text-base text-rosegold-light/80 italic">Counting down to Shalini's Special Day</p>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 md:gap-6 text-center">
+                <!-- DAYS -->
+                <div class="glass-card rounded-2xl p-3 sm:p-5 md:p-6 border border-rosegold/30 shadow-2xl flex flex-col justify-center items-center">
+                    <span id="cd-days" class="font-playfair text-3xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-champagne-light to-champagne gold-text-glow">00</span>
+                    <span class="mt-1 text-[10px] sm:text-xs md:text-sm font-bold tracking-widest uppercase text-rosegold font-cormorant">DAYS</span>
+                </div>
+                <!-- HOURS -->
+                <div class="glass-card rounded-2xl p-3 sm:p-5 md:p-6 border border-rosegold/30 shadow-2xl flex flex-col justify-center items-center">
+                    <span id="cd-hours" class="font-playfair text-3xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-champagne-light to-champagne gold-text-glow">00</span>
+                    <span class="mt-1 text-[10px] sm:text-xs md:text-sm font-bold tracking-widest uppercase text-rosegold font-cormorant">HOURS</span>
+                </div>
+                <!-- MINUTES -->
+                <div class="glass-card rounded-2xl p-3 sm:p-5 md:p-6 border border-rosegold/30 shadow-2xl flex flex-col justify-center items-center">
+                    <span id="cd-minutes" class="font-playfair text-3xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-champagne-light to-champagne gold-text-glow">00</span>
+                    <span class="mt-1 text-[10px] sm:text-xs md:text-sm font-bold tracking-widest uppercase text-rosegold font-cormorant">MINS</span>
+                </div>
+                <!-- SECONDS -->
+                <div class="glass-card rounded-2xl p-3 sm:p-5 md:p-6 border border-rosegold/30 shadow-2xl flex flex-col justify-center items-center">
+                    <span id="cd-seconds" class="font-playfair text-3xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-rosegold-light to-rosegold rosegold-text-glow">00</span>
+                    <span class="mt-1 text-[10px] sm:text-xs md:text-sm font-bold tracking-widest uppercase text-champagne font-cormorant">SECS</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D INTERACTIVE GIFT BOX SECTION -->
+        <section class="text-center py-6">
+            <div class="inline-block relative">
+                <button onclick="openSurpriseModal()" class="group relative focus:outline-none cursor-pointer">
+                    <!-- Glow Behind -->
+                    <div class="absolute -inset-4 bg-gradient-to-r from-rosegold via-champagne to-rosegold rounded-full blur-xl opacity-40 group-hover:opacity-80 transition duration-1000 group-hover:duration-200"></div>
+                    
+                    <!-- Pulsing Gift Box Card -->
+                    <div class="relative gift-box-pulse glass-card px-8 py-10 sm:px-12 sm:py-12 rounded-3xl border-2 border-champagne/60 flex flex-col items-center gap-4 hover:border-champagne transition-all">
+                        <div class="text-6xl sm:text-7xl transform group-hover:scale-110 transition-transform duration-300">
+                            🎁
+                        </div>
+                        <div>
+                            <h3 class="font-playfair text-2xl sm:text-3xl font-bold text-champagne gold-text-glow">
+                                Birthday Surprise Box
+                            </h3>
+                            <p class="font-cormorant text-sm sm:text-base text-rosegold-light mt-1">
+                                Tap To Open Your Cake & Love Letter
+                            </p>
+                        </div>
+                        <span class="mt-2 px-5 py-2 rounded-full bg-gradient-to-r from-rosegold-dark to-champagne-dark text-velvet-900 font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg">
+                            Open Surprise ✨
+                        </span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- PRE-CONFIGURED PHOTO GALLERY (Zero Overlap with SVG Fallback) -->
+        <section class="space-y-8">
+            <div class="text-center">
+                <h2 class="font-playfair text-3xl sm:text-4xl font-bold text-champagne">
+                    Precious Memories
+                </h2>
+                <p class="font-cormorant text-base sm:text-lg text-rosegold-light italic mt-1">
+                    Beautiful moments frozen in time with Shalini
+                </p>
+            </div>
+
+            <!-- Upload Custom Photo Test Button -->
+            <div class="flex justify-center">
+                <label class="cursor-pointer glass-card hover:border-champagne px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-champagne transition-all flex items-center gap-2 shadow-md">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                    </svg>
+                    <span>+ Live Test Upload Photo</span>
+                    <input type="file" id="photoUploader" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+                </label>
+            </div>
+
+            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-4 border border-rosegold/30 flex flex-col">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20">
+                        <img id="img-1" src="photo1.jpg" alt="Sabse Pyari Muskurahat" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="loadFallbackSVG(this, 'Rose Gold Sparkles')">
+                    </div>
+                    <div class="text-center mt-auto">
+                        <h4 class="font-playfair text-lg font-bold text-champagne">Sabse Pyari Muskurahat</h4>
+                        <p class="font-cormorant text-xs text-rosegold-light italic mt-0.5">Your smile brightens up my world</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-4 border border-rosegold/30 flex flex-col">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20">
+                        <img id="img-2" src="photo2.jpg" alt="Meri Duniya Ki Roshni" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="loadFallbackSVG(this, 'Golden Starlight')">
+                    </div>
+                    <div class="text-center mt-auto">
+                        <h4 class="font-playfair text-lg font-bold text-champagne">Meri Duniya Ki Roshni</h4>
+                        <p class="font-cormorant text-xs text-rosegold-light italic mt-0.5">You make every day special</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-4 border border-rosegold/30 flex flex-col">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20">
+                        <img id="img-3" src="photo3.jpg" alt="Dil Ki Dhadkan" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="loadFallbackSVG(this, 'Celestial Heart')">
+                    </div>
+                    <div class="text-center mt-auto">
+                        <h4 class="font-playfair text-lg font-bold text-champagne">Dil Ki Dhadkan</h4>
+                        <p class="font-cormorant text-xs text-rosegold-light italic mt-0.5">Every beat sings your name</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-4 border border-rosegold/30 flex flex-col">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20">
+                        <img id="img-4" src="photo4.jpg" alt="Humesha Sath" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="loadFallbackSVG(this, 'Eternal Journey')">
+                    </div>
+                    <div class="text-center mt-auto">
+                        <h4 class="font-playfair text-lg font-bold text-champagne">Humesha Sath</h4>
+                        <p class="font-cormorant text-xs text-rosegold-light italic mt-0.5">Forever and always together</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 SECRET PROMISE CARDS SECTION -->
+        <section class="space-y-8">
+            <div class="text-center">
+                <h2 class="font-playfair text-3xl sm:text-4xl font-bold text-champagne">
+                    Secret Romantic Promises
+                </h2>
+                <p class="font-cormorant text-base sm:text-lg text-rosegold-light italic mt-1">
+                    Tap any card to unlock Ajay's special promises for Shalini
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Promise Card 1 -->
+                <div class="h-64 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="relative w-full h-full duration-700 transform-style-3d transition-transform card-inner">
+                        <!-- Front -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-rosegold/40 flex flex-col items-center justify-center text-center backface-hidden shadow-xl">
+                            <span class="text-4xl mb-3">💫</span>
+                            <h3 class="font-playfair text-xl font-bold text-champagne">Har Pal Sath</h3>
+                            <p class="font-cormorant text-xs text-rosegold-light mt-2">Tap to flip & read promise</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-champagne/60 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden bg-gradient-to-br from-velvet-800 to-velvet-700 shadow-2xl">
+                            <h4 class="font-playfair text-lg font-bold text-champagne mb-2">Promise 1</h4>
+                            <p class="font-cormorant text-sm sm:text-base text-rosegold-light leading-relaxed">
+                                "Main vada karta hoon ki zindagi ke har mod par tumhara hath thame rahunga. Chahe raste kaise bhi hon, hum hamesha sath honge."
+                            </p>
+                            <span class="text-xs text-champagne mt-3 font-semibold">— Ajay ❤️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promise Card 2 -->
+                <div class="h-64 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="relative w-full h-full duration-700 transform-style-3d transition-transform card-inner">
+                        <!-- Front -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-rosegold/40 flex flex-col items-center justify-center text-center backface-hidden shadow-xl">
+                            <span class="text-4xl mb-3">✨</span>
+                            <h3 class="font-playfair text-xl font-bold text-champagne">Tumhari Muskurahat</h3>
+                            <p class="font-cormorant text-xs text-rosegold-light mt-2">Tap to flip & read promise</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-champagne/60 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden bg-gradient-to-br from-velvet-800 to-velvet-700 shadow-2xl">
+                            <h4 class="font-playfair text-lg font-bold text-champagne mb-2">Promise 2</h4>
+                            <p class="font-cormorant text-sm sm:text-base text-rosegold-light leading-relaxed">
+                                "Tumhari pyari si muskurahat meri duniya hai. Main har din aisi koshish karunga jisse tumhari aankhon mein hamesha khushi ke aansu aur honthon par pyari smile rahe."
+                            </p>
+                            <span class="text-xs text-champagne mt-3 font-semibold">— Ajay ❤️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promise Card 3 -->
+                <div class="h-64 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="relative w-full h-full duration-700 transform-style-3d transition-transform card-inner">
+                        <!-- Front -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-rosegold/40 flex flex-col items-center justify-center text-center backface-hidden shadow-xl">
+                            <span class="text-4xl mb-3">🌹</span>
+                            <h3 class="font-playfair text-xl font-bold text-champagne">Sirf Tumhara</h3>
+                            <p class="font-cormorant text-xs text-rosegold-light mt-2">Tap to flip & read promise</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-champagne/60 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden bg-gradient-to-br from-velvet-800 to-velvet-700 shadow-2xl">
+                            <h4 class="font-playfair text-lg font-bold text-champagne mb-2">Promise 3</h4>
+                            <p class="font-cormorant text-sm sm:text-base text-rosegold-light leading-relaxed">
+                                "Mera dil, mera har ek lamha aur meri har ek khushi sirf tumhare naam hai. Main aaj aur hamesha sirf tumhara hoon aur rahunga."
+                            </p>
+                            <span class="text-xs text-champagne mt-3 font-semibold">— Ajay ❤️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROMANTIC FOOTER -->
+        <footer class="pt-8 border-t border-rosegold/20 text-center space-y-3">
+            <p class="font-vibes text-3xl sm:text-4xl text-champagne gold-text-glow">
+                Har Janam Mein Sirf Tumhara Sath Chahiye, Shalini ❤️ — Tumhara Ajay
+            </p>
+            <p class="font-cormorant text-xs sm:text-sm text-rosegold-light/70 uppercase tracking-widest">
+                30 November 2026 • Starlight Celebration
+            </p>
+        </footer>
+    </main>
+
+    <!-- SURPRISE MODAL (CAKE CEREMONY & LOVE LETTER TABS) -->
+    <div id="surpriseModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card max-w-2xl w-full rounded-3xl border-2 border-champagne/60 overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 id-modal-content flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-5 border-b border-rosegold/20 bg-velvet-900/50">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🎁</span>
+                    <h3 class="font-playfair text-xl font-bold text-champagne">Shalini's Birthday Surprise</h3>
+                </div>
+                <button onclick="closeSurpriseModal()" class="w-8 h-8 rounded-full bg-rosegold/20 hover:bg-rosegold/40 flex items-center justify-center text-champagne font-bold transition">✕</button>
+            </div>
+
+            <!-- Modal Navigation Tabs -->
+            <div class="flex border-b border-rosegold/20 bg-velvet-800/40">
+                <button id="tab1Btn" onclick="switchTab(1)" class="flex-1 py-3 font-playfair font-semibold text-sm sm:text-base border-b-2 border-champagne text-champagne transition-colors flex items-center justify-center gap-2">
+                    🎂 5-Candle Cake Ceremony
+                </button>
+                <button id="tab2Btn" onclick="switchTab(2)" class="flex-1 py-3 font-playfair font-semibold text-sm sm:text-base border-b-2 border-transparent text-rosegold-light hover:text-champagne transition-colors flex items-center justify-center gap-2">
+                    📜 Wax-Sealed Love Letter
+                </button>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-6 overflow-y-auto flex-1 space-y-6">
+                
+                <!-- TAB 1: CAKE CEREMONY -->
+                <div id="tab1Content" class="space-y-6 text-center">
+                    <p class="font-cormorant text-sm sm:text-base text-rosegold-light">
+                        Tap individual candle flames to blow them out, or click the button below!
+                    </p>
+
+                    <!-- Interactive Birthday Cake -->
+                    <div class="relative py-8 flex flex-col items-center justify-center">
+                        
+                        <!-- 5 Candles Row -->
+                        <div class="flex items-end justify-center gap-6 sm:gap-8 z-10 -mb-2">
+                            <!-- Candle 1 -->
+                            <div class="flex flex-col items-center cursor-pointer" onclick="extinguishCandle(0)">
+                                <div id="flame-0" class="flame"></div>
+                                <div id="smoke-0" class="smoke hidden"></div>
+                                <div class="w-3.5 h-12 bg-gradient-to-b from-rosegold-light via-rosegold to-rosegold-dark rounded-t-sm shadow-md border-t border-champagne"></div>
+                            </div>
+                            <!-- Candle 2 -->
+                            <div class="flex flex-col items-center cursor-pointer" onclick="extinguishCandle(1)">
+                                <div id="flame-1" class="flame"></div>
+                                <div id="smoke-1" class="smoke hidden"></div>
+                                <div class="w-3.5 h-14 bg-gradient-to-b from-champagne-light via-champagne to-champagne-dark rounded-t-sm shadow-md border-t border-champagne"></div>
+                            </div>
+                            <!-- Candle 3 (Center) -->
+                            <div class="flex flex-col items-center cursor-pointer" onclick="extinguishCandle(2)">
+                                <div id="flame-2" class="flame"></div>
+                                <div id="smoke-2" class="smoke hidden"></div>
+                                <div class="w-4 h-16 bg-gradient-to-b from-rosegold-light via-rosegold to-rosegold-dark rounded-t-sm shadow-md border-t border-champagne"></div>
+                            </div>
+                            <!-- Candle 4 -->
+                            <div class="flex flex-col items-center cursor-pointer" onclick="extinguishCandle(3)">
+                                <div id="flame-3" class="flame"></div>
+                                <div id="smoke-3" class="smoke hidden"></div>
+                                <div class="w-3.5 h-14 bg-gradient-to-b from-champagne-light via-champagne to-champagne-dark rounded-t-sm shadow-md border-t border-champagne"></div>
+                            </div>
+                            <!-- Candle 5 -->
+                            <div class="flex flex-col items-center cursor-pointer" onclick="extinguishCandle(4)">
+                                <div id="flame-4" class="flame"></div>
+                                <div id="smoke-4" class="smoke hidden"></div>
+                                <div class="w-3.5 h-12 bg-gradient-to-b from-rosegold-light via-rosegold to-rosegold-dark rounded-t-sm shadow-md border-t border-champagne"></div>
+                            </div>
+                        </div>
+
+                        <!-- Cake Body -->
+                        <div class="w-56 sm:w-72 bg-gradient-to-r from-rosegold-dark via-rosegold to-rosegold-dark h-16 rounded-t-2xl shadow-xl relative border-t-4 border-champagne flex items-center justify-center">
+                            <span class="font-vibes text-3xl sm:text-4xl text-champagne gold-text-glow font-bold">Shalini</span>
+                            <!-- Frosting Drips -->
+                            <div class="absolute -bottom-2 inset-x-0 flex justify-around opacity-80">
+                                <span class="w-4 h-4 bg-champagne-light rounded-full"></span>
+                                <span class="w-5 h-5 bg-champagne-light rounded-full -mt-1"></span>
+                                <span class="w-4 h-4 bg-champagne-light rounded-full"></span>
+                                <span class="w-6 h-6 bg-champagne-light rounded-full -mt-2"></span>
+                                <span class="w-4 h-4 bg-champagne-light rounded-full"></span>
+                            </div>
+                        </div>
+                        <div class="w-64 sm:w-80 bg-gradient-to-r from-velvet-700 via-velvet-600 to-velvet-700 h-20 rounded-b-2xl shadow-2xl border-t border-rosegold/30 flex items-center justify-center">
+                            <span class="font-playfair text-xs sm:text-sm tracking-widest text-champagne/90">30 NOVEMBER 2026</span>
+                        </div>
+                        <!-- Plate -->
+                        <div class="w-72 sm:w-96 h-4 bg-gradient-to-r from-champagne/40 via-champagne to-champagne/40 rounded-full shadow-2xl -mt-1"></div>
+                    </div>
+
+                    <!-- Cake Action Buttons -->
+                    <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                        <button onclick="blowAllCandles()" class="px-5 py-2.5 rounded-full bg-rosegold/30 hover:bg-rosegold/50 text-champagne font-semibold text-xs sm:text-sm border border-rosegold/50 transition">
+                            💨 Blow All Candles
+                        </button>
+                        <button onclick="triggerCakeCutCelebration()" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-champagne to-champagne-dark text-velvet-900 font-bold text-xs sm:text-sm shadow-lg hover:brightness-110 transition">
+                            🎉 Cut Birthday Cake & Fireworks!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB 2: WAX-SEALED LOVE LETTER -->
+                <div id="tab2Content" class="hidden space-y-4">
+                    <div class="p-6 rounded-2xl bg-gradient-to-b from-[#251838] to-[#1a102b] border border-champagne/40 shadow-inner space-y-4 relative">
+                        <!-- Wax Seal SVG Stamp -->
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-rosegold-dark rounded-full flex items-center justify-center text-champagne font-bold shadow-lg border-2 border-champagne text-xs">
+                            A ❤️ S
+                        </div>
+
+                        <h4 class="font-vibes text-3xl text-champagne">Meri Pyaari Shalini,</h4>
+
+                        <p class="font-cormorant text-base sm:text-lg text-rosegold-light leading-relaxed">
+                            Main har pal tumhare sath khada hoon aur humesha rahunga. Zindagi ki har khushi aur har mod par mera hath tumhare hath mein rahega. Tum mere dil ki wo roshni ho jo meri duniya ko hamesha mehkati hai.
+                        </p>
+
+                        <p class="font-cormorant text-base sm:text-lg text-rosegold-light leading-relaxed">
+                            Aaj tumhare is khas din par main bhagwan se bas yahi prarthana karta hoon ki tumhari muskurahat kabhi kam na ho aur tumhari har khwahish puri ho.
+                        </p>
+
+                        <div class="pt-4 border-t border-rosegold/20 text-right">
+                            <p class="font-vibes text-2xl text-champagne">Sirf Tumhara,</p>
+                            <p class="font-playfair text-lg font-bold text-rosegold-light">Ajay ❤️</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        /* -------------------------------------------------------------
+           1. COUNTDOWN CLOCK ENGINE (Target: 30 Nov 2026 00:00:00)
+           ------------------------------------------------------------- */
+        const targetDate = new Date('November 30, 2026 00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('cd-days').innerText = '00';
+                document.getElementById('cd-hours').innerText = '00';
+                document.getElementById('cd-minutes').innerText = '00';
+                document.getElementById('cd-seconds').innerText = '00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+            document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        /* -------------------------------------------------------------
+           2. DUAL-MODE AUDIO ENGINE & SYNTHESIZER
+           Happy Birthday Music Box Chime Melody via Web Audio API
+           ------------------------------------------------------------- */
+        let audioCtx = null;
+        let isPlaying = false;
+        let synthInterval = null;
+
+        const bgAudio = document.getElementById('bgAudio');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        const eqIcon = document.getElementById('eqIcon');
+        const musicBtnText = document.getElementById('musicBtnText');
+
+        // Happy Birthday Note Frequencies
+        const notes = {
+            'G4': 392.00, 'A4': 440.00, 'B4': 493.88, 'C5': 523.25,
+            'D5': 587.33, 'E5': 659.25, 'F#5': 739.99, 'G5': 783.99,
+            'A5': 880.00, 'D4': 293.66
+        };
+
+        const songMelody = [
+            { note: 'G4', duration: 0.4 }, { note: 'G4', duration: 0.4 }, { note: 'A4', duration: 0.8 }, { note: 'G4', duration: 0.8 }, { note: 'C5', duration: 0.8 }, { note: 'B4', duration: 1.2 },
+            { note: 'G4', duration: 0.4 }, { note: 'G4', duration: 0.4 }, { note: 'A4', duration: 0.8 }, { note: 'G4', duration: 0.8 }, { note: 'D5', duration: 0.8 }, { note: 'C5', duration: 1.2 },
+            { note: 'G4', duration: 0.4 }, { note: 'G4', duration: 0.4 }, { note: 'G5', duration: 0.8 }, { note: 'E5', duration: 0.8 }, { note: 'C5', duration: 0.8 }, { note: 'B4', duration: 0.8 }, { note: 'A4', duration: 1.0 },
+            { note: 'F#5', duration: 0.4 }, { note: 'F#5', duration: 0.4 }, { note: 'E5', duration: 0.8 }, { note: 'C5', duration: 0.8 }, { note: 'D5', duration: 0.8 }, { note: 'C5', duration: 1.4 }
+        ];
+
+        function playSynthChime(freq, duration) {
+            if (!audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                // Music box chime timbre (combination of sine & triangle)
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration + 0.5);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration + 0.6);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        let currentNoteIndex = 0;
+        function startSynthSong() {
+            if (synthInterval) clearInterval(synthInterval);
+            currentNoteIndex = 0;
+            
+            function step() {
+                if (!isPlaying) return;
+                const item = songMelody[currentNoteIndex];
+                if (notes[item.note]) {
+                    playSynthChime(notes[item.note], item.duration);
+                }
+                currentNoteIndex = (currentNoteIndex + 1) % songMelody.length;
+                synthInterval = setTimeout(step, item.duration * 1000 + 150);
+            }
+            step();
+        }
+
+        function stopSynthSong() {
+            if (synthInterval) clearTimeout(synthInterval);
+        }
+
+        function toggleAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            if (!isPlaying) {
+                // Try playing song.mp3 first
+                bgAudio.play().then(() => {
+                    isPlaying = true;
+                    updateUIState(true);
+                }).catch(() => {
+                    // Fallback to Web Audio API Synth Melody
+                    isPlaying = true;
+                    startSynthSong();
+                    updateUIState(true);
+                });
+            } else {
+                isPlaying = false;
+                bgAudio.pause();
+                stopSynthSong();
+                updateUIState(false);
+            }
+        }
+
+        function updateUIState(playing) {
+            if (playing) {
+                eqIcon.classList.remove('paused');
+                musicBtnText.innerText = 'Playing Song...';
+            } else {
+                eqIcon.classList.add('paused');
+                musicBtnText.innerText = 'Play Music';
+            }
+        }
+
+        /* -------------------------------------------------------------
+           3. CANVAS ENGINE: STARS, SHOOTING STARS & SKY LANTERNS
+           ------------------------------------------------------------- */
+        const starCanvas = document.getElementById('starCanvas');
+        const ctx = starCanvas.getContext('2d');
+
+        let width, height;
+        let stars = [];
+        let shootingStars = [];
+        let lanterns = [];
+
+        function resizeCanvas() {
+            width = starCanvas.width = window.innerWidth;
+            height = starCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Create Stars
+        for (let i = 0; i < 160; i++) {
+            stars.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 1.8 + 0.5,
+                alpha: Math.random(),
+                speed: Math.random() * 0.02 + 0.005
+            });
+        }
+
+        // Create Golden Sky Lanterns
+        for (let i = 0; i < 15; i++) {
+            lanterns.push({
+                x: Math.random() * width,
+                y: Math.random() * height + height,
+                radius: Math.random() * 8 + 10,
+                speed: Math.random() * 0.4 + 0.2,
+                wobble: Math.random() * Math.PI * 2
+            });
+        }
+
+        function addShootingStar() {
+            if (Math.random() < 0.03 && shootingStars.length < 3) {
+                shootingStars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * (height / 2),
+                    length: Math.random() * 80 + 40,
+                    speed: Math.random() * 6 + 4,
+                    alpha: 1
+                });
+            }
+        }
+
+        function animateBackground() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw Twinkling Stars
+            stars.forEach(s => {
+                s.alpha += s.speed;
+                if (s.alpha > 1 || s.alpha < 0) s.speed = -s.speed;
+                ctx.fillStyle = `rgba(249, 226, 156, ${Math.abs(s.alpha)})`;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Draw Shooting Stars
+            addShootingStar();
+            shootingStars.forEach((ss, idx) => {
+                ss.x += ss.speed;
+                ss.y += ss.speed * 0.6;
+                ss.alpha -= 0.015;
+
+                ctx.strokeStyle = `rgba(244, 162, 184, ${ss.alpha})`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(ss.x, ss.y);
+                ctx.lineTo(ss.x - ss.length, ss.y - ss.length * 0.6);
+                ctx.stroke();
+
+                if (ss.alpha <= 0) shootingStars.splice(idx, 1);
+            });
+
+            // Draw Golden Sky Lanterns
+            lanterns.forEach(l => {
+                l.y -= l.speed;
+                l.wobble += 0.02;
+                const lanternX = l.x + Math.sin(l.wobble) * 15;
+
+                if (l.y < -30) {
+                    l.y = height + 30;
+                    l.x = Math.random() * width;
+                }
+
+                // Glow
+                const grad = ctx.createRadialGradient(lanternX, l.y, 2, lanternX, l.y, l.radius * 1.8);
+                grad.addColorStop(0, 'rgba(249, 226, 156, 0.9)');
+                grad.addColorStop(0.5, 'rgba(244, 162, 184, 0.4)');
+                grad.addColorStop(1, 'rgba(244, 162, 184, 0)');
+
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(lanternX, l.y, l.radius * 1.8, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Lantern Body
+                ctx.fillStyle = '#f9e29c';
+                ctx.beginPath();
+                ctx.roundRect(lanternX - l.radius / 2, l.y - l.radius / 1.5, l.radius, l.radius * 1.3, 3);
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animateBackground);
+        }
+
+        window.onload = function() {
+            animateBackground();
+        };
+
+        /* -------------------------------------------------------------
+           4. FIREWORKS / CONFETTI ENGINE
+           ------------------------------------------------------------- */
+        const fireworksCanvas = document.getElementById('fireworksCanvas');
+        const fwCtx = fireworksCanvas.getContext('2d');
+        let particles = [];
+
+        function resizeFWCanvas() {
+            fireworksCanvas.width = window.innerWidth;
+            fireworksCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeFWCanvas);
+        resizeFWCanvas();
+
+        function triggerBurst(x, y) {
+            const colors = ['#f9e29c', '#f4a2b8', '#fff5d6', '#ffb6ca', '#ffffff'];
+            for (let i = 0; i < 70; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 7 + 2;
+                particles.push({
+                    x: x || window.innerWidth / 2,
+                    y: y || window.innerHeight / 2,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    alpha: 1,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    size: Math.random() * 4 + 2
+                });
+            }
+        }
+
+        function animateFireworks() {
+            fwCtx.clearRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+
+            particles.forEach((p, idx) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.08; // Gravity
+                p.alpha -= 0.015;
+
+                fwCtx.fillStyle = p.color;
+                fwCtx.globalAlpha = Math.max(0, p.alpha);
+                fwCtx.beginPath();
+                fwCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                fwCtx.fill();
+
+                if (p.alpha <= 0) particles.splice(idx, 1);
+            });
+
+            requestAnimationFrame(animateFireworks);
+        }
+        animateFireworks();
+
+        /* -------------------------------------------------------------
+           5. MODAL & SURPRISE BOX CONTROLLER
+           ------------------------------------------------------------- */
+        const surpriseModal = document.getElementById('surpriseModal');
+
+        function openSurpriseModal() {
+            triggerBurst();
+            surpriseModal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeSurpriseModal() {
+            surpriseModal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function switchTab(tabNum) {
+            const tab1Content = document.getElementById('tab1Content');
+            const tab2Content = document.getElementById('tab2Content');
+            const tab1Btn = document.getElementById('tab1Btn');
+            const tab2Btn = document.getElementById('tab2Btn');
+
+            if (tabNum === 1) {
+                tab1Content.classList.remove('hidden');
+                tab2Content.classList.add('hidden');
+                tab1Btn.className = "flex-1 py-3 font-playfair font-semibold text-sm sm:text-base border-b-2 border-champagne text-champagne transition-colors flex items-center justify-center gap-2";
+                tab2Btn.className = "flex-1 py-3 font-playfair font-semibold text-sm sm:text-base border-b-2 border-transparent text-rosegold-light hover:text-champagne transition-colors flex items-center justify-center gap-2";
+            } else {
+                tab1Content.classList.add('hidden');
+                tab2Content.classList.remove('hidden');
+                tab2Btn.className = "flex-1 py-3 font-playfair font-semibold text-sm sm:text-base border-b-2 border-champagne text-champagne transition-colors flex items-center justify-center gap-2";
+                tab1Btn.className = "flex-1 py-3 font-playfair font-semibold text-sm sm:text-base border-b-2 border-transparent text-rosegold-light hover:text-champagne transition-colors flex items-center justify-center gap-2";
+            }
+        }
+
+        /* -------------------------------------------------------------
+           6. CANDLE CEREMONY LOGIC
+           ------------------------------------------------------------- */
+        function extinguishCandle(index) {
+            const flame = document.getElementById(`flame-${index}`);
+            const smoke = document.getElementById(`smoke-${index}`);
+
+            if (flame && !flame.classList.contains('hidden')) {
+                flame.classList.add('hidden');
+                smoke.classList.remove('hidden');
+
+                // Play soft puff synth sound
+                if (audioCtx) {
+                    try {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                        osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.2);
+                        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                        gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + 0.2);
+                    } catch (e) {}
+                }
+            }
+        }
+
+        function blowAllCandles() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => extinguishCandle(i), i * 150);
+            }
+            setTimeout(() => {
+                triggerBurst(window.innerWidth / 2, window.innerHeight / 2);
+            }, 800);
+        }
+
+        function triggerCakeCutCelebration() {
+            blowAllCandles();
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    triggerBurst(Math.random() * window.innerWidth, Math.random() * window.innerHeight * 0.7);
+                }, i * 300);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           7. 3D CARD FLIP FUNCTION
+           ------------------------------------------------------------- */
+        function flipCard(cardWrapper) {
+            const inner = cardWrapper.querySelector('.card-inner');
+            inner.classList.toggle('rotate-y-180');
+        }
+
+        /* -------------------------------------------------------------
+           8. ZERO-OVERLAP SVG FALLBACK FOR GALLERY PHOTOS
+           ------------------------------------------------------------- */
+        function loadFallbackSVG(imgElement, titleText) {
+            const svgContent = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+                    <defs>
+                        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1d1238"/>
+                            <stop offset="100%" stop-color="#0b0716"/>
+                        </linearGradient>
+                        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#f9e29c"/>
+                            <stop offset="100%" stop-color="#f4a2b8"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="400" height="400" fill="url(#bgGrad)"/>
+                    <circle cx="200" cy="200" r="140" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+                    <path d="M200,270 C140,220 110,180 110,145 C110,115 135,90 165,90 C182,90 195,100 200,110 C205,100 218,90 235,90 C265,90 290,115 290,145 C290,180 260,220 200,270 Z" fill="url(#goldGrad)" opacity="0.85"/>
+                    <circle cx="120" cy="110" r="3" fill="#f9e29c"/>
+                    <circle cx="280" cy="110" r="3" fill="#f4a2b8"/>
+                    <circle cx="200" cy="70" r="4" fill="#ffffff"/>
+                </svg>
+            `;
+            imgElement.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgContent);
+        }
+
+        /* -------------------------------------------------------------
+           9. LIVE LOCAL PHOTO UPLOADER TEST FUNCTION
+           ------------------------------------------------------------- */
+        let uploadedCount = 0;
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const targetId = `img-${(uploadedCount % 4) + 1}`;
+                    document.getElementById(targetId).src = e.target.result;
+                    uploadedCount++;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
