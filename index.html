@@ -86,12 +86,24 @@
         }
         .transform-style-3d {
             transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
         }
         .backface-hidden {
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
         .rotate-y-180 {
             transform: rotateY(180deg);
+        }
+
+        /* Shake animation when locked card is tapped */
+        @keyframes cardShake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+        .animate-shake {
+            animation: cardShake 0.45s ease-in-out;
         }
 
         /* Candle Flame Animation */
@@ -291,17 +303,6 @@
                 </p>
             </div>
 
-            <!-- Upload Custom Photo Test Button -->
-            <div class="flex justify-center">
-                <label class="cursor-pointer glass-card hover:border-champagne px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-champagne transition-all flex items-center gap-2 shadow-md">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
-                    </svg>
-                    <span>+ Live Test Upload Photo</span>
-                    <input type="file" id="photoUploader" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
-                </label>
-            </div>
-
             <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Card 1 -->
                 <div class="glass-card glass-card-hover rounded-2xl p-4 border border-rosegold/30 flex flex-col">
@@ -349,14 +350,14 @@
             </div>
         </section>
 
-        <!-- 3 SECRET PROMISE CARDS SECTION -->
+        <!-- 3 SECRET PROMISE CARDS SECTION (Locked until 30 Nov 2026 00:00:00) -->
         <section class="space-y-8">
             <div class="text-center">
                 <h2 class="font-playfair text-3xl sm:text-4xl font-bold text-champagne">
                     Secret Romantic Promises
                 </h2>
-                <p class="font-cormorant text-base sm:text-lg text-rosegold-light italic mt-1">
-                    Tap any card to unlock Ajay's special promises for Shalini
+                <p id="promiseSubtitle" class="font-cormorant text-base sm:text-lg text-rosegold-light italic mt-1">
+                    🔒 Locked until 30 November 2026 — Unlocks automatically when the countdown ends!
                 </p>
             </div>
 
@@ -365,13 +366,16 @@
                 <div class="h-64 perspective-1000 cursor-pointer" onclick="flipCard(this)">
                     <div class="relative w-full h-full duration-700 transform-style-3d transition-transform card-inner">
                         <!-- Front -->
-                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-rosegold/40 flex flex-col items-center justify-center text-center backface-hidden shadow-xl">
-                            <span class="text-4xl mb-3">💫</span>
+                        <div class="card-front absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-rosegold/40 flex flex-col items-center justify-center text-center backface-hidden shadow-xl">
+                            <span class="promise-lock-badge px-3 py-1 rounded-full bg-velvet-900/80 border border-champagne/40 text-[11px] font-semibold text-champagne mb-3">
+                                🔒 Locked till 30 Nov
+                            </span>
+                            <span class="text-4xl mb-2">💫</span>
                             <h3 class="font-playfair text-xl font-bold text-champagne">Har Pal Sath</h3>
-                            <p class="font-cormorant text-xs text-rosegold-light mt-2">Tap to flip & read promise</p>
+                            <p class="promise-hint font-cormorant text-xs text-rosegold-light mt-2">Unlocks when countdown hits 00:00:00</p>
                         </div>
                         <!-- Back -->
-                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-champagne/60 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden bg-gradient-to-br from-velvet-800 to-velvet-700 shadow-2xl">
+                        <div class="card-back absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-champagne/60 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden bg-gradient-to-br from-velvet-800 to-velvet-700 shadow-2xl">
                             <h4 class="font-playfair text-lg font-bold text-champagne mb-2">Promise 1</h4>
                             <p class="font-cormorant text-sm sm:text-base text-rosegold-light leading-relaxed">
                                 "Main vada karta hoon ki zindagi ke har mod par tumhara hath thame rahunga. Chahe raste kaise bhi hon, hum hamesha sath honge."
@@ -385,13 +389,16 @@
                 <div class="h-64 perspective-1000 cursor-pointer" onclick="flipCard(this)">
                     <div class="relative w-full h-full duration-700 transform-style-3d transition-transform card-inner">
                         <!-- Front -->
-                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-rosegold/40 flex flex-col items-center justify-center text-center backface-hidden shadow-xl">
-                            <span class="text-4xl mb-3">✨</span>
+                        <div class="card-front absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-rosegold/40 flex flex-col items-center justify-center text-center backface-hidden shadow-xl">
+                            <span class="promise-lock-badge px-3 py-1 rounded-full bg-velvet-900/80 border border-champagne/40 text-[11px] font-semibold text-champagne mb-3">
+                                🔒 Locked till 30 Nov
+                            </span>
+                            <span class="text-4xl mb-2">✨</span>
                             <h3 class="font-playfair text-xl font-bold text-champagne">Tumhari Muskurahat</h3>
-                            <p class="font-cormorant text-xs text-rosegold-light mt-2">Tap to flip & read promise</p>
+                            <p class="promise-hint font-cormorant text-xs text-rosegold-light mt-2">Unlocks when countdown hits 00:00:00</p>
                         </div>
                         <!-- Back -->
-                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-champagne/60 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden bg-gradient-to-br from-velvet-800 to-velvet-700 shadow-2xl">
+                        <div class="card-back absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-champagne/60 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden bg-gradient-to-br from-velvet-800 to-velvet-700 shadow-2xl">
                             <h4 class="font-playfair text-lg font-bold text-champagne mb-2">Promise 2</h4>
                             <p class="font-cormorant text-sm sm:text-base text-rosegold-light leading-relaxed">
                                 "Tumhari pyari si muskurahat meri duniya hai. Main har din aisi koshish karunga jisse tumhari aankhon mein hamesha khushi ke aansu aur honthon par pyari smile rahe."
@@ -405,13 +412,16 @@
                 <div class="h-64 perspective-1000 cursor-pointer" onclick="flipCard(this)">
                     <div class="relative w-full h-full duration-700 transform-style-3d transition-transform card-inner">
                         <!-- Front -->
-                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-rosegold/40 flex flex-col items-center justify-center text-center backface-hidden shadow-xl">
-                            <span class="text-4xl mb-3">🌹</span>
+                        <div class="card-front absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-rosegold/40 flex flex-col items-center justify-center text-center backface-hidden shadow-xl">
+                            <span class="promise-lock-badge px-3 py-1 rounded-full bg-velvet-900/80 border border-champagne/40 text-[11px] font-semibold text-champagne mb-3">
+                                🔒 Locked till 30 Nov
+                            </span>
+                            <span class="text-4xl mb-2">🌹</span>
                             <h3 class="font-playfair text-xl font-bold text-champagne">Sirf Tumhara</h3>
-                            <p class="font-cormorant text-xs text-rosegold-light mt-2">Tap to flip & read promise</p>
+                            <p class="promise-hint font-cormorant text-xs text-rosegold-light mt-2">Unlocks when countdown hits 00:00:00</p>
                         </div>
                         <!-- Back -->
-                        <div class="absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-champagne/60 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden bg-gradient-to-br from-velvet-800 to-velvet-700 shadow-2xl">
+                        <div class="card-back absolute inset-0 w-full h-full rounded-2xl glass-card p-6 border border-champagne/60 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden bg-gradient-to-br from-velvet-800 to-velvet-700 shadow-2xl">
                             <h4 class="font-playfair text-lg font-bold text-champagne mb-2">Promise 3</h4>
                             <p class="font-cormorant text-sm sm:text-base text-rosegold-light leading-relaxed">
                                 "Mera dil, mera har ek lamha aur meri har ek khushi sirf tumhare naam hai. Main aaj aur hamesha sirf tumhara hoon aur rahunga."
@@ -433,6 +443,22 @@
             </p>
         </footer>
     </main>
+
+    <!-- LOCKED PROMISE TEASE MODAL -->
+    <div id="lockModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card max-w-md w-full rounded-3xl border-2 border-champagne/60 p-6 sm:p-8 text-center space-y-4 shadow-2xl">
+            <div class="text-5xl">🔒✨</div>
+            <h3 class="font-playfair text-2xl font-bold text-champagne gold-text-glow">
+                Abhi Thoda Intezaar, Shalini!
+            </h3>
+            <p class="font-cormorant text-base sm:text-lg text-rosegold-light leading-relaxed">
+                Yeh secret promise abhi locked hai. Jaise hi <span class="text-champagne font-semibold">30 November 2026</span> ka countdown <span class="text-champagne font-semibold">00:00:00</span> hoga, yeh card apne aap khul jayega! ❤️
+            </p>
+            <button onclick="closeLockModal()" class="mt-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-rosegold-dark to-champagne-dark text-velvet-900 font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg cursor-pointer hover:brightness-110 transition">
+                Theek Hai, Intezaar Karungi 💕
+            </button>
+        </div>
+    </div>
 
     <!-- SURPRISE MODAL (CAKE CEREMONY & LOVE LETTER TABS) -->
     <div id="surpriseModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
@@ -565,19 +591,40 @@
     <!-- JAVASCRIPT ENGINE -->
     <script>
         /* -------------------------------------------------------------
-           1. COUNTDOWN CLOCK ENGINE (Target: 30 Nov 2026 00:00:00)
+           1. COUNTDOWN CLOCK & PROMISE UNLOCK ENGINE
+              Target: 30 Nov 2026 00:00:00
            ------------------------------------------------------------- */
         const targetDate = new Date('November 30, 2026 00:00:00').getTime();
+        let promisesUnlocked = false;
+
+        function unlockPromisesUI() {
+            if (promisesUnlocked) return;
+            promisesUnlocked = true;
+
+            const subtitle = document.getElementById('promiseSubtitle');
+            if (subtitle) {
+                subtitle.innerText = "✨ Unlocked! Tap any card to flip & read Ajay's special promises for Shalini";
+            }
+
+            document.querySelectorAll('.promise-lock-badge').forEach(badge => {
+                badge.innerText = "🔓 Unlocked";
+            });
+
+            document.querySelectorAll('.promise-hint').forEach(hint => {
+                hint.innerText = "Tap to flip & read promise";
+            });
+        }
 
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
 
-            if (distance < 0) {
+            if (distance <= 0) {
                 document.getElementById('cd-days').innerText = '00';
                 document.getElementById('cd-hours').innerText = '00';
                 document.getElementById('cd-minutes').innerText = '00';
                 document.getElementById('cd-seconds').innerText = '00';
+                unlockPromisesUI();
                 return;
             }
 
@@ -956,11 +1003,37 @@
         }
 
         /* -------------------------------------------------------------
-           7. 3D CARD FLIP FUNCTION
+           7. 3D CARD FLIP FUNCTION (ONLY AFTER COUNTDOWN ENDS)
            ------------------------------------------------------------- */
+        function closeLockModal() {
+            document.getElementById('lockModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
         function flipCard(cardWrapper) {
+            const now = new Date().getTime();
+            if (now < targetDate) {
+                cardWrapper.classList.remove('animate-shake');
+                void cardWrapper.offsetWidth;
+                cardWrapper.classList.add('animate-shake');
+                document.getElementById('lockModal').classList.remove('opacity-0', 'pointer-events-none');
+                return;
+            }
+
             const inner = cardWrapper.querySelector('.card-inner');
-            inner.classList.toggle('rotate-y-180');
+            const isFlipped = inner.classList.toggle('rotate-y-180');
+            const front = cardWrapper.querySelector('.card-front');
+            const back = cardWrapper.querySelector('.card-back');
+
+            if (isFlipped) {
+                setTimeout(() => {
+                    if (inner.classList.contains('rotate-y-180')) {
+                        front.style.visibility = 'hidden';
+                        back.style.visibility = 'visible';
+                    }
+                }, 200);
+            } else {
+                front.style.visibility = 'visible';
+            }
         }
 
         /* -------------------------------------------------------------
@@ -988,23 +1061,6 @@
                 </svg>
             `;
             imgElement.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgContent);
-        }
-
-        /* -------------------------------------------------------------
-           9. LIVE LOCAL PHOTO UPLOADER TEST FUNCTION
-           ------------------------------------------------------------- */
-        let uploadedCount = 0;
-        function handlePhotoUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const targetId = `img-${(uploadedCount % 4) + 1}`;
-                    document.getElementById(targetId).src = e.target.result;
-                    uploadedCount++;
-                };
-                reader.readAsDataURL(file);
-            }
         }
     </script>
 </body>
