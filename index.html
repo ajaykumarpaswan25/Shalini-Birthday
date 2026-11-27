@@ -46,6 +46,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <script>
+        // Pre-define fallback SVG loader in <head> so onerror never fires before definition
+        window.loadFallbackSVG = function(imgElement, titleText) {
+            imgElement.onerror = null;
+            const svgContent = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+                    <defs>
+                        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1d1238"/>
+                            <stop offset="100%" stop-color="#0b0716"/>
+                        </linearGradient>
+                        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#f9e29c"/>
+                            <stop offset="100%" stop-color="#f4a2b8"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="400" height="400" fill="url(#bgGrad)"/>
+                    <circle cx="200" cy="200" r="140" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+                    <path d="M200,270 C140,220 110,180 110,145 C110,115 135,90 165,90 C182,90 195,100 200,110 C205,100 218,90 235,90 C265,90 290,115 290,145 C290,180 260,220 200,270 Z" fill="url(#goldGrad)" opacity="0.85"/>
+                    <circle cx="120" cy="110" r="3" fill="#f9e29c"/>
+                    <circle cx="280" cy="110" r="3" fill="#f4a2b8"/>
+                    <circle cx="200" cy="70" r="4" fill="#ffffff"/>
+                </svg>
+            `;
+            imgElement.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgContent);
+        };
+    </script>
+
     <style>
         /* Custom Styles & Glassmorphism */
         body {
@@ -78,6 +106,40 @@
             transform: translateY(-6px) scale(1.02);
             border-color: rgba(249, 226, 156, 0.6);
             box-shadow: 0 20px 50px rgba(244, 162, 184, 0.25), inset 0 0 25px rgba(249, 226, 156, 0.1);
+        }
+
+        /* 3D Polaroid Tilt Card */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.18s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tilt-card:hover {
+            border-color: rgba(249, 226, 156, 0.7);
+            box-shadow: 0 22px 50px rgba(244, 162, 184, 0.3), inset 0 0 25px rgba(249, 226, 156, 0.12);
+        }
+
+        /* Falling Rose Petals & Roses Shower */
+        .falling-rose {
+            position: fixed;
+            top: -60px;
+            pointer-events: none;
+            z-index: 47;
+            animation: roseShowerFall linear forwards;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+        }
+        @keyframes roseShowerFall {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(52vh) translateX(25px) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(112vh) translateX(-20px) rotate(360deg);
+                opacity: 0.2;
+            }
         }
 
         /* 3D Flip Card */
@@ -199,6 +261,26 @@
             }
         }
 
+        /* Floating Touch/Mouse Heart Trail */
+        .trail-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 48;
+            font-size: 16px;
+            animation: floatHeartTrail 1.1s ease-out forwards;
+            text-shadow: 0 0 10px rgba(249, 226, 156, 0.8);
+        }
+        @keyframes floatHeartTrail {
+            0% {
+                transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -85px) scale(1.35) rotate(18deg);
+                opacity: 0;
+            }
+        }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -301,8 +383,8 @@
             </div>
         </section>
 
-        <!-- 3D INTERACTIVE GIFT BOX SECTION -->
-        <section class="text-center py-6">
+        <!-- 3D INTERACTIVE GIFT BOX & ROSE SHOWER SECTION -->
+        <section class="text-center py-6 space-y-6">
             <div class="inline-block relative">
                 <button onclick="openSurpriseModal()" class="group relative focus:outline-none cursor-pointer">
                     <!-- Glow Behind -->
@@ -327,9 +409,16 @@
                     </div>
                 </button>
             </div>
+
+            <!-- #3 INTERACTIVE ROSE SHOWER BUTTON -->
+            <div>
+                <button onclick="showerRoses()" class="px-6 py-3 rounded-full glass-card border border-rosegold/50 hover:border-champagne text-champagne font-playfair font-semibold text-sm sm:text-base shadow-xl hover:scale-105 transition-all cursor-pointer active:scale-95 inline-flex items-center gap-2">
+                    <span>🌹 Shower Shalini With Roses</span>
+                </button>
+            </div>
         </section>
 
-        <!-- PRE-CONFIGURED PHOTO GALLERY (Zero Overlap with SVG Fallback) -->
+        <!-- PRE-CONFIGURED PHOTO GALLERY (Zero Overlap with SVG Fallback & #4 3D Polaroid Tilt) -->
         <section class="space-y-8">
             <div class="text-center">
                 <h2 class="font-playfair text-3xl sm:text-4xl font-bold text-champagne">
@@ -340,11 +429,12 @@
                 </p>
             </div>
 
-            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 perspective-1000">
                 <!-- Card 1 -->
-                <div class="glass-card glass-card-hover rounded-2xl p-4 border border-rosegold/30 flex flex-col">
-                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20">
-                        <img id="img-1" src="photo1.jpg" alt="Sabse Pyari Muskurahat" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="loadFallbackSVG(this, 'Rose Gold Sparkles')">
+                <div onclick="openPhotoLightbox('img-1', 'Sabse Pyari Muskurahat', 'Your smile brightens up my world')" class="tilt-card glass-card rounded-2xl p-4 border border-rosegold/30 flex flex-col cursor-pointer">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20 group">
+                        <img id="img-1" src="photo1.jpg" alt="Sabse Pyari Muskurahat" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="loadFallbackSVG(this, 'Rose Gold Sparkles')">
+                        <span class="absolute bottom-2 right-2 px-2.5 py-1 rounded-full bg-velvet-900/80 border border-champagne/40 text-[10px] text-champagne font-semibold">🔍 Tap to Zoom</span>
                     </div>
                     <div class="text-center mt-auto">
                         <h4 class="font-playfair text-lg font-bold text-champagne">Sabse Pyari Muskurahat</h4>
@@ -353,9 +443,10 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="glass-card glass-card-hover rounded-2xl p-4 border border-rosegold/30 flex flex-col">
-                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20">
-                        <img id="img-2" src="photo2.jpg" alt="Meri Duniya Ki Roshni" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="loadFallbackSVG(this, 'Golden Starlight')">
+                <div onclick="openPhotoLightbox('img-2', 'Meri Duniya Ki Roshni', 'You make every day special')" class="tilt-card glass-card rounded-2xl p-4 border border-rosegold/30 flex flex-col cursor-pointer">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20 group">
+                        <img id="img-2" src="photo2.jpg" alt="Meri Duniya Ki Roshni" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="loadFallbackSVG(this, 'Golden Starlight')">
+                        <span class="absolute bottom-2 right-2 px-2.5 py-1 rounded-full bg-velvet-900/80 border border-champagne/40 text-[10px] text-champagne font-semibold">🔍 Tap to Zoom</span>
                     </div>
                     <div class="text-center mt-auto">
                         <h4 class="font-playfair text-lg font-bold text-champagne">Meri Duniya Ki Roshni</h4>
@@ -364,9 +455,10 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="glass-card glass-card-hover rounded-2xl p-4 border border-rosegold/30 flex flex-col">
-                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20">
-                        <img id="img-3" src="photo3.jpg" alt="Dil Ki Dhadkan" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="loadFallbackSVG(this, 'Celestial Heart')">
+                <div onclick="openPhotoLightbox('img-3', 'Dil Ki Dhadkan', 'Every beat sings your name')" class="tilt-card glass-card rounded-2xl p-4 border border-rosegold/30 flex flex-col cursor-pointer">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20 group">
+                        <img id="img-3" src="photo3.jpg" alt="Dil Ki Dhadkan" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="loadFallbackSVG(this, 'Celestial Heart')">
+                        <span class="absolute bottom-2 right-2 px-2.5 py-1 rounded-full bg-velvet-900/80 border border-champagne/40 text-[10px] text-champagne font-semibold">🔍 Tap to Zoom</span>
                     </div>
                     <div class="text-center mt-auto">
                         <h4 class="font-playfair text-lg font-bold text-champagne">Dil Ki Dhadkan</h4>
@@ -375,15 +467,66 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div class="glass-card glass-card-hover rounded-2xl p-4 border border-rosegold/30 flex flex-col">
-                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20">
-                        <img id="img-4" src="photo4.jpg" alt="Humesha Sath" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="loadFallbackSVG(this, 'Eternal Journey')">
+                <div onclick="openPhotoLightbox('img-4', 'Humesha Sath', 'Forever and always together')" class="tilt-card glass-card rounded-2xl p-4 border border-rosegold/30 flex flex-col cursor-pointer">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-velvet-800 relative mb-4 border border-rosegold/20 group">
+                        <img id="img-4" src="photo4.jpg" alt="Humesha Sath" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="loadFallbackSVG(this, 'Eternal Journey')">
+                        <span class="absolute bottom-2 right-2 px-2.5 py-1 rounded-full bg-velvet-900/80 border border-champagne/40 text-[10px] text-champagne font-semibold">🔍 Tap to Zoom</span>
                     </div>
                     <div class="text-center mt-auto">
                         <h4 class="font-playfair text-lg font-bold text-champagne">Humesha Sath</h4>
                         <p class="font-cormorant text-xs text-rosegold-light italic mt-0.5">Forever and always together</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- REASONS WHY I LOVE YOU / ROMANTIC SHAYARI SLIDER & LOVE METER -->
+        <section class="max-w-4xl mx-auto w-full space-y-10">
+            <div class="text-center">
+                <h2 class="font-playfair text-3xl sm:text-4xl font-bold text-champagne">
+                    Reasons Why I Love You
+                </h2>
+                <p class="font-cormorant text-base sm:text-lg text-rosegold-light italic mt-1">
+                    Dil ki kuch khaas baatein aur shayari sirf Shalini ke liye
+                </p>
+            </div>
+
+            <!-- Shayari & Reasons Carousel Card -->
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-champagne/40 text-center space-y-6 relative shadow-2xl">
+                <div class="inline-block px-4 py-1 rounded-full bg-velvet-900/80 border border-rosegold/40 text-xs font-semibold text-champagne tracking-widest uppercase">
+                    <span id="reasonCounter">Reason 1 of 6</span> ❤️
+                </div>
+
+                <div class="min-h-[110px] flex flex-col items-center justify-center px-2 sm:px-8">
+                    <p id="reasonText" class="font-cormorant italic text-xl sm:text-2xl md:text-3xl text-rosegold-light leading-relaxed transition-opacity duration-300">
+                        "Tumhari ek muskurahat meri poori din ki thakan mita deti hai — tum meri zindagi ki sabse khoobsurat wajah ho."
+                    </p>
+                </div>
+
+                <div class="flex items-center justify-center gap-4 pt-2">
+                    <button onclick="prevReason()" class="px-5 py-2 rounded-full bg-velvet-800/80 hover:bg-rosegold/30 border border-rosegold/40 text-champagne font-semibold text-xs sm:text-sm transition cursor-pointer active:scale-95">
+                        ← Previous
+                    </button>
+                    <button onclick="nextReason()" class="px-6 py-2 rounded-full bg-gradient-to-r from-rosegold-dark to-champagne-dark text-velvet-900 font-bold text-xs sm:text-sm shadow-lg hover:brightness-110 transition cursor-pointer active:scale-95">
+                        Next Reason ✨ →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interactive Infinite Love Meter -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 border border-rosegold/30 text-center space-y-4">
+                <h3 class="font-playfair text-xl sm:text-2xl font-bold text-champagne">
+                    Ajay's Love Meter For Shalini
+                </h3>
+                <div class="w-full max-w-md mx-auto h-5 bg-velvet-900/90 rounded-full overflow-hidden border border-champagne/40 p-0.5">
+                    <div id="loveMeterBar" class="h-full w-0 rounded-full bg-gradient-to-r from-rosegold via-champagne to-rosegold transition-all duration-1000 ease-out"></div>
+                </div>
+                <p id="loveMeterStatus" class="font-cormorant text-base sm:text-lg text-rosegold-light italic">
+                    Tap the button below to measure how much Ajay loves Shalini!
+                </p>
+                <button onclick="measureLove()" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-rosegold to-champagne text-velvet-900 font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg hover:scale-105 transition cursor-pointer active:scale-95">
+                    💖 Check Love Level
+                </button>
             </div>
         </section>
 
@@ -494,6 +637,20 @@
             <button onclick="closeLockModal()" class="mt-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-rosegold-dark to-champagne-dark text-velvet-900 font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg cursor-pointer hover:brightness-110 transition">
                 Theek Hai, Intezaar Karungi 💕
             </button>
+        </div>
+    </div>
+
+    <!-- PHOTO TAP-TO-ZOOM LIGHTBOX MODAL -->
+    <div id="photoLightboxModal" onclick="closePhotoLightbox()" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div onclick="event.stopPropagation()" class="glass-card max-w-xl w-full rounded-3xl border-2 border-champagne/60 p-4 sm:p-6 text-center space-y-4 shadow-2xl relative">
+            <button onclick="closePhotoLightbox()" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-velvet-900/90 hover:bg-rosegold/40 border border-champagne/40 flex items-center justify-center text-champagne font-bold transition cursor-pointer">✕</button>
+            <div class="w-full max-h-[65vh] rounded-2xl overflow-hidden bg-velvet-800 border border-rosegold/30 flex items-center justify-center">
+                <img id="lightboxImg" src="" alt="Memory Zoom" class="w-full h-full max-h-[65vh] object-contain">
+            </div>
+            <div>
+                <h3 id="lightboxTitle" class="font-playfair text-2xl font-bold text-champagne gold-text-glow"></h3>
+                <p id="lightboxCaption" class="font-cormorant text-base text-rosegold-light italic mt-1"></p>
+            </div>
         </div>
     </div>
 
@@ -1191,31 +1348,135 @@
         }
 
         /* -------------------------------------------------------------
-           8. ZERO-OVERLAP SVG FALLBACK FOR GALLERY PHOTOS
+           9. PHOTO TAP-TO-ZOOM LIGHTBOX
            ------------------------------------------------------------- */
-        function loadFallbackSVG(imgElement, titleText) {
-            const svgContent = `
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
-                    <defs>
-                        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#1d1238"/>
-                            <stop offset="100%" stop-color="#0b0716"/>
-                        </linearGradient>
-                        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#f9e29c"/>
-                            <stop offset="100%" stop-color="#f4a2b8"/>
-                        </linearGradient>
-                    </defs>
-                    <rect width="400" height="400" fill="url(#bgGrad)"/>
-                    <circle cx="200" cy="200" r="140" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
-                    <path d="M200,270 C140,220 110,180 110,145 C110,115 135,90 165,90 C182,90 195,100 200,110 C205,100 218,90 235,90 C265,90 290,115 290,145 C290,180 260,220 200,270 Z" fill="url(#goldGrad)" opacity="0.85"/>
-                    <circle cx="120" cy="110" r="3" fill="#f9e29c"/>
-                    <circle cx="280" cy="110" r="3" fill="#f4a2b8"/>
-                    <circle cx="200" cy="70" r="4" fill="#ffffff"/>
-                </svg>
-            `;
-            imgElement.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgContent);
+        function openPhotoLightbox(imgId, title, caption) {
+            const src = document.getElementById(imgId).src;
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxTitle').innerText = title;
+            document.getElementById('lightboxCaption').innerText = caption;
+            document.getElementById('photoLightboxModal').classList.remove('opacity-0', 'pointer-events-none');
         }
+
+        function closePhotoLightbox() {
+            document.getElementById('photoLightboxModal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        /* -------------------------------------------------------------
+           10. REASONS WHY I LOVE YOU / SHAYARI SLIDER & LOVE METER
+           ------------------------------------------------------------- */
+        const loveReasons = [
+            "\"Tumhari ek muskurahat meri poori din ki thakan mita deti hai — tum meri zindagi ki sabse khoobsurat wajah ho.\"",
+            "\"Chahe kitni bhi bheed kyun na ho, meri aankhein hamesha sirf tumhe hi dhoondhti hain, Shalini ❤️\"",
+            "\"Tumhari baatein, tumhari masoomiyat aur tumhara gussa bhi mujhe sabse zyada pyara lagta hai.\"",
+            "\"Jab tum sath hoti ho to har mushkil aasan lagti hai aur har lamha ek khubsurat yaad ban jata hai.\"",
+            "\"Chand aur sitare to aasman mein bahut hain, par meri duniya ki sabse chamakti roshni sirf tum ho ✨\"",
+            "\"Har janam mein agar mujhe kisi ko chunne ka mauka mile, to main bina soche sirf tumhe hi chununga — Ajay ❤️\""
+        ];
+        let reasonIndex = 0;
+
+        function renderReason() {
+            const textEl = document.getElementById('reasonText');
+            const counterEl = document.getElementById('reasonCounter');
+            textEl.style.opacity = '0';
+            setTimeout(() => {
+                textEl.innerText = loveReasons[reasonIndex];
+                counterEl.innerText = `Reason ${reasonIndex + 1} of ${loveReasons.length}`;
+                textEl.style.opacity = '1';
+            }, 180);
+        }
+
+        function nextReason() {
+            reasonIndex = (reasonIndex + 1) % loveReasons.length;
+            renderReason();
+        }
+
+        function prevReason() {
+            reasonIndex = (reasonIndex - 1 + loveReasons.length) % loveReasons.length;
+            renderReason();
+        }
+
+        function measureLove() {
+            const bar = document.getElementById('loveMeterBar');
+            const status = document.getElementById('loveMeterStatus');
+            bar.style.width = '100%';
+            status.innerText = 'Calculating Ajay\'s love... 99%... 100%...';
+            setTimeout(() => {
+                status.innerHTML = '<span class="text-champagne font-bold text-xl">∞ INFINITE LOVE!</span> Yeh kabhi khatam nahi ho sakta, Shalini ❤️';
+                triggerBurst(window.innerWidth / 2, window.innerHeight / 2);
+            }, 950);
+        }
+
+        /* -------------------------------------------------------------
+           11. INTERACTIVE FLOATING HEARTS TRAIL (TOUCH & MOUSE)
+           ------------------------------------------------------------- */
+        let lastTrailTime = 0;
+        function spawnTrailHeart(x, y) {
+            const now = Date.now();
+            if (now - lastTrailTime < 90) return;
+            lastTrailTime = now;
+
+            const icons = ['❤️', '✨', '💖', '💛'];
+            const heart = document.createElement('span');
+            heart.className = 'trail-heart';
+            heart.innerText = icons[Math.floor(Math.random() * icons.length)];
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1100);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            spawnTrailHeart(e.clientX, e.clientY);
+        });
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches && e.touches[0]) {
+                spawnTrailHeart(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+        document.addEventListener('click', (e) => {
+            spawnTrailHeart(e.clientX, e.clientY);
+        });
+
+        /* -------------------------------------------------------------
+           12. #3 INTERACTIVE ROSE & PETALS SHOWER
+           ------------------------------------------------------------- */
+        function showerRoses() {
+            const roseItems = ['🌹', '🥀', '🌸', '✨', '💖'];
+            for (let i = 0; i < 36; i++) {
+                setTimeout(() => {
+                    const rose = document.createElement('span');
+                    rose.className = 'falling-rose';
+                    rose.innerText = roseItems[Math.floor(Math.random() * roseItems.length)];
+                    rose.style.left = (Math.random() * 96 + 1) + 'vw';
+                    rose.style.fontSize = (Math.random() * 16 + 20) + 'px';
+                    const duration = Math.random() * 2.5 + 3.2;
+                    rose.style.animationDuration = duration + 's';
+                    document.body.appendChild(rose);
+                    setTimeout(() => rose.remove(), duration * 1000);
+                }, i * 85);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           14. #4 3D POLAROID MEMORIES TILT EFFECT
+           ------------------------------------------------------------- */
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+                card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+        });
     </script>
 </body>
 </html>
